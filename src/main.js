@@ -15,8 +15,9 @@ function generateNewBook() {
     covers[getRandomIndex(covers)],
     titles[getRandomIndex(titles)],
     descriptors[getRandomIndex(descriptors)],
-    descriptors[getRandomIndex(descriptors)]
+    descriptors[getRandomIndex(descriptors)],
   );
+  displayNewCover();
 }
 
 var newRandomCoverButton = document.querySelector(".random-cover-button");
@@ -51,6 +52,7 @@ function switchToForm() {
   showNewButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
+  savedPage.classList.add("hidden")
 }
 
 homeButton.addEventListener("click", goHome);
@@ -64,24 +66,8 @@ function goHome() {
 }
 
 viewSavedButton.addEventListener("click", viewSavedCovers);
-console.log(savedCovers);
+;
 
-// function viewSavedCovers() {
-//   homePage.classList.add("hidden");
-//   savedPage.classList.remove("hidden");
-//   saveCoverButton.classList.add("hidden");
-//   showNewButton.classList.add("hidden");
-//   homeButton.classList.remove("hidden");
-//   var miniCoverHTML = "";
-//   for (var i = 0; i < savedCovers.length; i++) {
-//     miniCoverHTML += `
-//     <section class="mini-cover">
-//     <img class="cover-image" src="${savedCovers[i].cover}">
-//     <h2 class="cover-title">${savedCovers[i].title}</h2>
-//     <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-//     </section>
-//     `;
-//   }
 
 function viewSavedCovers() {
   homePage.classList.add("hidden");
@@ -89,6 +75,8 @@ function viewSavedCovers() {
   saveCoverButton.classList.add("hidden");
   showNewButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
+  formPage.classList.add("hidden");
+
   var savedCoversHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversHTML += `
@@ -119,6 +107,17 @@ var desc1Input = document.querySelector(".user-desc1");
 var desc2Input = document.querySelector(".user-desc2");
 
 var makeBookButton = document.querySelector(".create-new-book-button");
+
+//working through this event listener
+var miniCovers = document.getElementsByClassName("mini-cover")
+miniCovers.addEventListener("dblclick", function(){
+  if (var i = 0, i < miniCovers.length, i++) {
+    miniCovers[i].splice(i, 1)
+  }
+});
+
+
+
 
 makeBookButton.addEventListener("click", function() {
   event.preventDefault();
