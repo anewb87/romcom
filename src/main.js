@@ -15,7 +15,7 @@ function generateNewBook() {
     covers[getRandomIndex(covers)],
     titles[getRandomIndex(titles)],
     descriptors[getRandomIndex(descriptors)],
-    descriptors[getRandomIndex(descriptors)],
+    descriptors[getRandomIndex(descriptors)]
   );
   displayNewCover();
 }
@@ -52,7 +52,7 @@ function switchToForm() {
   showNewButton.classList.add("hidden");
   homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
-  savedPage.classList.add("hidden")
+  savedPage.classList.add("hidden");
 }
 
 homeButton.addEventListener("click", goHome);
@@ -66,9 +66,6 @@ function goHome() {
 }
 
 viewSavedButton.addEventListener("click", viewSavedCovers);
-;
-
-
 function viewSavedCovers() {
   homePage.classList.add("hidden");
   savedPage.classList.remove("hidden");
@@ -90,7 +87,7 @@ function viewSavedCovers() {
 
   var savedCoversSection = document.querySelector(".saved-covers-section");
   savedCoversSection.innerHTML = savedCoversHTML;
-  var miniCovers = document.getElementsByClassName("mini-cover");
+  var miniCovers = document.querySelectorAll(".mini-cover");
   for (var i = 0; i < miniCovers.length; i++) {
     const tmp = i;
     miniCovers[i].addEventListener("dblclick", function() {
@@ -107,17 +104,6 @@ var desc1Input = document.querySelector(".user-desc1");
 var desc2Input = document.querySelector(".user-desc2");
 
 var makeBookButton = document.querySelector(".create-new-book-button");
-
-//working through this event listener
-var miniCovers = document.getElementsByClassName("mini-cover")
-miniCovers.addEventListener("dblclick", function(){
-  if (var i = 0, i < miniCovers.length, i++) {
-    miniCovers[i].splice(i, 1)
-  }
-});
-
-
-
 
 makeBookButton.addEventListener("click", function() {
   event.preventDefault();
