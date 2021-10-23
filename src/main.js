@@ -27,13 +27,12 @@ function generateNewBook() {
     covers[getRandomIndex(covers)],
     titles[getRandomIndex(titles)],
     descriptors[getRandomIndex(descriptors)],
-    descriptors[getRandomIndex(descriptors)],
+    descriptors[getRandomIndex(descriptors)]
   );
   displayNewCover();
 }
 
 generateNewBook();
-
 
 newRandomCoverButton.addEventListener("click", generateNewBook);
 
@@ -42,10 +41,9 @@ var savedCovers = [
     "http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg",
     "Sunsets and Sorrows",
     "sunsets",
-    "sorrows",
+    "sorrows"
   )
 ];
-
 
 makeOwnButton.addEventListener("click", switchToForm);
 
@@ -56,8 +54,8 @@ function switchToForm() {
   homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
   savedPage.classList.add("hidden");
+  isNotValidInput();
 }
-
 
 homeButton.addEventListener("click", goHome);
 
@@ -69,15 +67,10 @@ function goHome() {
   saveCoverButton.classList.remove("hidden");
 }
 
-
 viewSavedButton.addEventListener("click", viewSavedCovers);
+
 function viewSavedCovers() {
-  homePage.classList.add("hidden");
-  savedPage.classList.remove("hidden");
-  saveCoverButton.classList.add("hidden");
-  showNewButton.classList.add("hidden");
-  homeButton.classList.remove("hidden");
-  formPage.classList.add("hidden");
+  viewSavedCoversPage();
 
   var savedCoversHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
@@ -89,7 +82,6 @@ function viewSavedCovers() {
     </section>
     `;
   }
-
 
   var savedCoversSection = document.querySelector(".saved-covers-section");
   savedCoversSection.innerHTML = savedCoversHTML;
@@ -103,6 +95,14 @@ function viewSavedCovers() {
   }
 }
 
+function viewSavedCoversPage() {
+  homePage.classList.add("hidden");
+  savedPage.classList.remove("hidden");
+  saveCoverButton.classList.add("hidden");
+  showNewButton.classList.add("hidden");
+  homeButton.classList.remove("hidden");
+  formPage.classList.add("hidden");
+}
 
 makeBookButton.addEventListener("click", function() {
   event.preventDefault();
@@ -110,22 +110,25 @@ makeBookButton.addEventListener("click", function() {
     coverInput.value,
     titleInput.value,
     desc1Input.value,
-    desc2Input.value,
+    desc2Input.value
   );
   displayNewCover();
   goHome();
 });
-
 
 function displayNewCover() {
   coverImg.src = currentCover.cover;
   coverTitle.innerText = currentCover.title;
   tagline1.innerText = currentCover.tagline1;
   tagline2.innerText = currentCover.tagline2;
-};
+}
 
-
-function makeNewBook(customCoverInput, customTitleInput, desc1Input, desc2Input) {
+function makeNewBook(
+  customCoverInput,
+  customTitleInput,
+  desc1Input,
+  desc2Input
+) {
   covers.push(customCoverInput);
   titles.push(customTitleInput);
   descriptors.push(desc1Input);
@@ -134,13 +137,30 @@ function makeNewBook(customCoverInput, customTitleInput, desc1Input, desc2Input)
     customCoverInput,
     customTitleInput,
     desc1Input,
-    desc2Input,
+    desc2Input
   );
-};
+}
 
+saveCoverButton.addEventListener("click", addCoversToSaved);
 
-saveCoverButton.addEventListener("click", function() {
+function addCoversToSaved() {
   if (!savedCovers.includes(currentCover)) {
     savedCovers.push(currentCover);
   }
-});
+}
+
+// Attempts at a spicy (dont forget the changes we made in index if we dont use this)
+// var form = document.getElementByID("form");
+// var errorElem = document.querySelector("#error");
+//
+// form.addEventListener("submit", e => {
+//   var message = [];
+//   if (coverInput.value === "" || coverInput.value === null) {
+//     messages.push("Enter a cover");
+//   }
+//
+//   if (messages.length > 0) {
+//     e.preventDefault();
+//     errorElem.innerText = messages.join(", ");
+//   }
+// });
