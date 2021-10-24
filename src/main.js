@@ -54,7 +54,6 @@ function switchToForm() {
   homeButton.classList.remove("hidden");
   saveCoverButton.classList.add("hidden");
   savedPage.classList.add("hidden");
-  //isNotValidInput();
 }
 
 homeButton.addEventListener("click", goHome);
@@ -69,53 +68,27 @@ function goHome() {
 
 viewSavedButton.addEventListener("click", viewSavedCovers);
 
-// function viewSavedCovers() {
-//   viewSavedCoversPage();
-//
-//   var savedCoversHTML = "";
-//   for (var i = 0; i < savedCovers.length; i++) {
-//     savedCoversHTML += `
-//     <section class="mini-cover">
-//     <img class="cover-image" src="${savedCovers[i].cover}">
-//     <h2 class="cover-title">${savedCovers[i].title}</h2>
-//     <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-//     </section>
-//     `;
-//   }
-//
-//   var savedCoversSection = document.querySelector(".saved-covers-section");
-//   savedCoversSection.innerHTML = savedCoversHTML;
-//   var miniCovers = document.querySelectorAll(".mini-cover");
-//   for (var i = 0; i < miniCovers.length; i++) {
-//     const tmp = i;
-//     miniCovers[i].addEventListener("dblclick", function() {
-//       savedCovers.splice(tmp, 1);
-//       viewSavedCovers();
-//     });
-//   }
-// }
-
-
-//Lexy's Saturday night refactoring attempt
 function viewSavedCovers() {
   viewSavedCoversPage();
   showMiniCovers();
+  deleteCoversOnDblClick();
 }
 
 function showMiniCovers() {
   var savedCoversHTML = "";
-    for (var i = 0; i < savedCovers.length; i++) {
-      savedCoversHTML += `
+  for (var i = 0; i < savedCovers.length; i++) {
+    savedCoversHTML += `
       <section class="mini-cover">
       <img class="cover-image" src="${savedCovers[i].cover}">
       <h2 class="cover-title">${savedCovers[i].title}</h2>
       <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-      </section>
-      `;
-    }
-
+      </section>`;
+  }
   var savedCoversSection = document.querySelector(".saved-covers-section");
   savedCoversSection.innerHTML = savedCoversHTML;
+}
+
+function deleteCoversOnDblClick() {
   var miniCovers = document.querySelectorAll(".mini-cover");
   for (var i = 0; i < miniCovers.length; i++) {
     const tmp = i;
@@ -125,7 +98,6 @@ function showMiniCovers() {
     });
   }
 }
-
 
 function viewSavedCoversPage() {
   homePage.classList.add("hidden");
@@ -155,31 +127,31 @@ function displayNewCover() {
   tagline2.innerText = currentCover.tagline2;
 }
 
-// function makeNewBook(customCoverInput, customTitleInput, desc1Input, desc2Input) {
-//   covers.push(customCoverInput);
-//   titles.push(customTitleInput);
-//   descriptors.push(desc1Input);
-//   descriptors.push(desc2Input);
-//   currentCover = new Cover(
-//     customCoverInput,
-//     customTitleInput,
-//     desc1Input,
-//     desc2Input
-//   );
-// }
-
-//Lexy Saturday night in an attempt to make above function smaller. It works
-function makeNewBook(customCoverInput, customTitleInput, desc1Input, desc2Input) {
-  currentCover = new Cover(customCoverInput, customTitleInput, desc1Input, desc2Input);
+function makeNewBook(
+  customCoverInput,
+  customTitleInput,
+  desc1Input,
+  desc2Input
+) {
+  currentCover = new Cover(
+    customCoverInput,
+    customTitleInput,
+    desc1Input,
+    desc2Input
+  );
 }
 
-function addNewBookToOthers(customCoverInput, customTitleInput, desc1Input, desc2Input) {
+function addNewBookToOthers(
+  customCoverInput,
+  customTitleInput,
+  desc1Input,
+  desc2Input
+) {
   covers.push(customCoverInput);
   titles.push(customTitleInput);
   descriptors.push(desc1Input);
   descriptors.push(desc2Input);
 }
-
 
 saveCoverButton.addEventListener("click", addCoversToSaved);
 
@@ -189,15 +161,19 @@ function addCoversToSaved() {
   }
 }
 
-
-makeBookButton.disabled = true
+makeBookButton.disabled = true;
 
 function enableMakeBookButton() {
-  if (coverInput.value != "" && titleInput.value != "" && desc1Input.value != "" && desc2Input.value != "") {
+  if (
+    coverInput.value != "" &&
+    titleInput.value != "" &&
+    desc1Input.value != "" &&
+    desc2Input.value != ""
+  ) {
     makeBookButton.disabled = false;
   } else {
     makeBookButton.disabled = true;
   }
-};
+}
 
-document.addEventListener("keyup", enableMakeBookButton)
+document.addEventListener("keyup", enableMakeBookButton);
