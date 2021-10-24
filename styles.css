@@ -164,3 +164,9 @@ form > button:hover {
   background: #e07999;
   color: white;
 }
+
+.create-new-book-button:disabled,
+.create-new-book-button[disabled] {
+  background-color: #999999;
+  cursor: none;
+}
